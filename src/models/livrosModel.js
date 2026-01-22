@@ -9,6 +9,7 @@ livro.titulo,
 livro.precoCompra,
 livro.precoVenda,
 autor.nome as nomeAutor,
+livro.qtdLivro,
 genero.nome as nomeGenero
  from livro join autor on autor.id = livro.fkAutor join genero on genero.id = livro.fkGenero;
     `;

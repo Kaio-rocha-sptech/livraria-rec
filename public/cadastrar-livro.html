@@ -157,48 +157,46 @@
         }
         var vSugerido = corpo.precoCompra + 15;
 
-    if(corpo.precoCompra > 100 && (corpo.genero == "1" || corpo.genero == "2")){
-        vSugerido = corpo.precoCompra + ((corpo.precoCompra * 22.5) / 100);
-    }else if((corpo.precoCompra > 50 && corpo.precoCompra < 100) && corpo.genero == "4"){
-        vSugerido = corpo.precoCompra + ((corpo.precoCompra * 27.5) / 100);
-    }else if(corpo.precoCompra < 50 && (corpo.genero == "3" || "1")){
-        vSugerido = corpo.precoCompra + (corpo.precoCompra / 4);
-    }else{
-        vSugerido = corpo.precoCompra + 15;
-    }
+        if (corpo.precoCompra > 100 && (corpo.genero == "1" || corpo.genero == "2")) {
+            vSugerido = corpo.precoCompra + ((corpo.precoCompra * 22.5) / 100);
+        } else if ((corpo.precoCompra > 50 && corpo.precoCompra < 100) && corpo.genero == "4") {
+            vSugerido = corpo.precoCompra + ((corpo.precoCompra * 27.5) / 100);
+        } else if (corpo.precoCompra < 50 && (corpo.genero == "3" || "1")) {
+            vSugerido = corpo.precoCompra + (corpo.precoCompra / 4);
+        } else {
+            vSugerido = corpo.precoCompra + 15;
+        }
 
-    if(corpo.precoVenda < vSugerido){
-        alert("o valor esta muito abaixo!")
-        alert(`valor minimo de venda: ${vSugerido}`)
-    }else{
-         fetch(`/livros/cadastrar`, {
-            method: "post",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(corpo)
-        }).then(function (resposta) {
+        if (corpo.precoVenda < vSugerido) {
+            alert("o valor esta muito abaixo!")
+            alert(`valor minimo de venda: ${vSugerido}`)
+        } else {
+            fetch(`/livros/cadastrar`, {
+                method: "post",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(corpo)
+            }).then(function (resposta) {
 
-            console.log("resposta: ", resposta);
+                console.log("resposta: ", resposta);
 
-            if (resposta.ok) {
-                window.alert("Post realizado com sucesso. Você será redirecionado ao Acervo.");
-                window.location = "/";
-                limparFormulario();
+                if (resposta.ok) {
+                    window.alert("Post realizado com sucesso. Você será redirecionado ao Acervo.");
+                    window.location = "/";
+                    limparFormulario();
 
-            } else if (resposta.status == 404) {
-                window.alert("Deu 404!");
-            } else {
-                throw ("Houve um erro ao tentar realizar a postagem! Código da resposta: " + resposta.status);
-            }
-        }).catch(function (resposta) {
-            console.log(`#ERRO: ${resposta}`);
+                } else if (resposta.status == 404) {
+                    window.alert("Deu 404!");
+                } else {
+                    throw ("Houve um erro ao tentar realizar a postagem! Código da resposta: " + resposta.status);
+                }
+            }).catch(function (resposta) {
+                console.log(`#ERRO: ${resposta}`);
 
-        });
-    }
-
-        return false;
-
+            });
+            return false;
+        }
     }
 
 
@@ -283,6 +281,6 @@
     }
 
 
-    
+
 
 </script>

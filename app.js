@@ -14,6 +14,7 @@ var indexRouter = require("./src/routes/index");
 var livrosRouter = require("./src/routes/livros");
 var autoresRouter = require("./src/routes/autores");
 var generosRouter = require("./src/routes/generos");
+var painelRouter = require("./src/routes/painel");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -22,6 +23,7 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use(cors());
 
 app.use("/", indexRouter);
+app.use("/painel", painelRouter);
 app.use("/livros", livrosRouter);
 app.use("/autores", autoresRouter);
 app.use("/generos", generosRouter);

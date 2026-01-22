@@ -95,6 +95,7 @@
 </html>
 
 <script>
+  var teste = "";
 
   function selecionarLivrosTodos() {
     fetch("/livros/listar").then(function (resposta) {
@@ -122,10 +123,12 @@
             var spanPrecoVenda = document.createElement("span");
             var spanAutor = document.createElement("span");
             var spanGenero = document.createElement("span");
+            var spanQtdLivro = document.createElement("span");
             
             var divButtons = document.createElement("div");
             var btnEditar = document.createElement("button");
             var btnDeletar = document.createElement("button");
+
 
             spanID.innerHTML = "ID: <b>" + item.id + "</b>";
             spanTitulo.innerHTML = "Título: <b>" + item.titulo + "</b>";
@@ -133,13 +136,16 @@
             spanPrecoVenda.innerHTML = "Preço de Venda (R$): <b>" + item.precoVenda + "<b>";
             spanAutor.innerHTML = "Autor do Livro: <b>" + item.nomeAutor + "<b>";
             spanGenero.innerHTML = "Gênero: <b>" + item.nomeGenero + "<b>";
-
-            btnEditar.innerHTML = "Editar";
+            spanQtdLivro.innerHTML = "Quantidade em estoque:  <b>" + item.qtdLivro + "<b>";
+              
+              btnEditar.innerHTML = "Editar";
             btnDeletar.innerHTML = "Deletar";
 
             divitem.className = "publicacao";
             spanTitulo.id = "inputNumero" + item.idLivro;
+            spanQtdLivro.id = "inputNumero" + item.qtdLivro
             spanTitulo.className = "publicacao-titulo";
+            spanQtdLivro.className = "publicacao-titulo"
             spanAutor.className = "publicacao-autor";
             spanPrecoCompra.className = "publicacao-precoCompra";
             spanPrecoVenda.className = "publicacao-precoVenda";
@@ -161,6 +167,7 @@
             divitem.appendChild(spanAutor);
             divitem.appendChild(spanPrecoCompra);
             divitem.appendChild(spanPrecoVenda);
+            divitem.appendChild(spanQtdLivro);
             divitem.appendChild(divButtons);
             divButtons.appendChild(btnEditar);
             divButtons.appendChild(btnDeletar);
